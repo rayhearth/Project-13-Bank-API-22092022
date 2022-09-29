@@ -16,7 +16,6 @@ const AdminRouter = () => {
                 </Route>
                 <Route path='user/:id/account'>
                     <Route path=':id' element={<Transaction />} />
-
                 </Route>
 
                 <Route path='*' element={<Error />} />
