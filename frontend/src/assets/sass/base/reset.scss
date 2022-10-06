@@ -26,9 +26,10 @@ body {
 
 .main {
     flex: 1;
-    &-dark {
-        background-color: $purpleDark;
-    }
+}
+
+.bg-dark {
+    background-color: $purpleDark;
 }
 
 ul,
