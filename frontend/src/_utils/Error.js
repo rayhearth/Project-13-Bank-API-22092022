@@ -6,7 +6,7 @@ const Error = () => {
         <div className='pageError-404'>
             <h1>404</h1>
             <p>La page que vous demandez n'existe pas.</p>
-            <Link to='/'>Retourner sur la page d'accueil</Link>
+            <Link className='errorLink' to='/'>Retourner sur la page d'accueil</Link>
         </div>
     );
 };

@@ -1,4 +1,5 @@
 import React from 'react';
+import Features from '@/components/UI/Features';
 
 const Home = () => {
     return (
@@ -11,6 +12,7 @@ const Home = () => {
                 <p className="subtitle">High interest rates.</p>
                 <p className="text">Open a savings account with Argent Bank today!</p>
             </section>
+            <Features />
         </div>
 
     );

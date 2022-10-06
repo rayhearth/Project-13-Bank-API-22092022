@@ -7,7 +7,7 @@ const PHeader = () => {
                 <a className="main-nav-logo" href="./index.html">
                     <img
                         className="main-nav-logo-image"
-                        src="./img/argentBankLogo.png"
+                        src={process.env.PUBLIC_URL + '/assets/img/argentBankLogo.png'}
                         alt="Argent Bank Logo"
                     />
                     <h1 className="sr-only">Argent Bank</h1>

@@ -21,23 +21,14 @@ html {
 
 body {
     margin: 0;
-    display: flex;
-    flex-direction: column;
     min-height: 100vh;
 }
 
 .main {
-    margin: 0 auto;
-    width: 100%;
-}
-
-h1 {
-    font-size: 48px;
-}
-
-h2 {
-    font-size: 15px;
-    font-family: "Roboto";
+    flex: 1;
+    &-dark {
+        background-color: $purpleDark;
+    }
 }
 
 ul,
@@ -51,4 +42,15 @@ li {
 
 a {
     text-decoration: none;
+}
+
+input {
+    margin: 0;
+    padding: 0;
+    background: none;
+    border: none;
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    text-align: inherit;
 }

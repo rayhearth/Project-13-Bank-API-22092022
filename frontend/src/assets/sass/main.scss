@@ -1,1 +1,11 @@
+@import "./utils/_variables";
 @import "./base/reset";
+
+@import "./layout/_footer";
+@import "./layout/_header";
+
+@import "./components/features";
+
+@import "./pages/app";
+@import "./pages/home";
+@import "./pages/error.scss";
