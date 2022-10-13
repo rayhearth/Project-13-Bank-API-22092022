@@ -1,5 +1,6 @@
 import React from 'react';
-import Account from '../../components/UI/Account';
+import Account from '@/components/UI/Account';
+
 
 const Profile = () => {
     return (

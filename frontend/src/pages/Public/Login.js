@@ -28,7 +28,7 @@ const Login = () => {
             .then(res => {
                 dispatch(setUserData(res.data))
                 accountServices.saveToken(res.body.token)
-                navigate('/account')
+                navigate('/user')
             })
             .catch(error => console.log(error))
     }

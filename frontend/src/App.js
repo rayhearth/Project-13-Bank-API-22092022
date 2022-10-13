@@ -13,7 +13,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/*' element={<PublicRouter />} />
-          <Route path='/account/*' element={
+          <Route path='/user/*' element={
             <AuthGuard>
               <AdminRouter />
             </AuthGuard>

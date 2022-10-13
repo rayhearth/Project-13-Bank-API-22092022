@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Account = () => {
     return (
@@ -11,7 +12,7 @@ const Account = () => {
                     <p className="account-amount-description">Available Balance</p>
                 </div>
                 <div className="account-content-wrapper cta">
-                    <button className="transaction-button">View transactions</button>
+                    <Link to='/user/account'><button className="transaction-button">View transactions</button></Link>
                 </div>
             </section>
             <section className="account">
@@ -21,7 +22,7 @@ const Account = () => {
                     <p className="account-amount-description">Available Balance</p>
                 </div>
                 <div className="account-content-wrapper cta">
-                    <button className="transaction-button">View transactions</button>
+                    <Link to='/user/account'><button className="transaction-button">View transactions</button></Link>
                 </div>
             </section>
             <section className="account">
@@ -31,10 +32,9 @@ const Account = () => {
                     <p className="account-amount-description">Current Balance</p>
                 </div>
                 <div className="account-content-wrapper cta">
-                    <button className="transaction-button">View transactions</button>
+                    <Link to='/user/account'><button className="transaction-button">View transactions</button></Link>
                 </div>
             </section>
-
         </div>
     );
 };

@@ -15,10 +15,7 @@ const AdminRouter = () => {
                 <Route path='user'>
                     <Route path=':id' element={<Profile />} />
                 </Route>
-                <Route path='user/:id/account'>
-                    <Route path=':id' element={<Transaction />} />
-                </Route>
-
+                <Route path='/account' element={<Transaction />} />
                 <Route path='*' element={<Error />} />
             </Route>
         </Routes>

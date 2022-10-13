@@ -1,0 +1,22 @@
+.accountTransaction {
+    margin: 0 auto;
+    text-align: left;
+    background-color: $bluegrey;
+    max-width: 960px;
+    .title {
+        display: grid;
+        grid-template-columns: 0.5fr 1fr 1fr 1fr 1fr;
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+        align-items: center;
+    }
+    .datas {
+        display: grid;
+        grid-template-columns: 0.5fr 1fr 1fr 1fr 1fr;
+        grid-template-rows: repeat(1, 1fr);
+        grid-column-gap: 0px;
+        grid-row-gap: 5px;
+        background-color: white;
+        align-items: center;
+    }
+}
