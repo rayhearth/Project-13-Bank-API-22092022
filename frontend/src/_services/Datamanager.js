@@ -6,10 +6,7 @@ const userLogin = async (credentials) => {
 }
 
 
-const getUser = async (userId) => {
-    const { data } = await Axios.get(`/user/${userId}`)
-    return data
-}
+
 
 
 export const dataServices = {
