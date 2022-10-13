@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const AHeader = () => {
     return (
@@ -12,15 +13,15 @@ const AHeader = () => {
                     />
                     <h1 className="sr-only">Argent Bank</h1>
                 </a>
-                <div>
-                    <a className="main-nav-item" href="./user.html">
+                <div className='linkContent'>
+                    <Link to='/' className="main-nav-item">
                         <i className="fa fa-user-circle"></i>
                         Tony
-                    </a>
-                    <a className="main-nav-item" href="./index.html">
+                    </Link>
+                    <Link to='/login' className="main-nav-item">
                         <i className="fa fa-sign-out"></i>
                         Sign Out
-                    </a>
+                    </Link>
                 </div>
             </nav>
         </header>

@@ -13,14 +13,13 @@ const PHeader = () => {
                     />
                     <h1 className="sr-only">Argent Bank</h1>
                 </Link>
-                <div>
-                    <Link to='/login' className="mainNavSignIn" >
+                <div className='linkContent'>
+                    <Link to='/login' className="main-nav-item" >
                         <i className="fa fa-user-circle"></i>
-                        Sign In
+                        <p>Sign In</p>
                     </Link>
                 </div>
             </nav>
-
         </header>
     );
 };
