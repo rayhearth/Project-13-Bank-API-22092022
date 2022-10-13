@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const PHeader = () => {
     return (
@@ -13,10 +14,10 @@ const PHeader = () => {
                     <h1 className="sr-only">Argent Bank</h1>
                 </a>
                 <div>
-                    <a className="main-nav-item" href="./sign-in.html">
+                    <Link to='/login' className="mainNavSignIn" >
                         <i className="fa fa-user-circle"></i>
                         Sign In
-                    </a>
+                    </Link>
                 </div>
             </nav>
 

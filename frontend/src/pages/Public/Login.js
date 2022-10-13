@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { dataServices } from '@/_services/Datamanager'
 import { accountServices } from '@/_services/Account.services';
-import { setUserData } from '../../feature/user.slice';
+import { setUserData } from '@/feature/user.slice';
 import { useDispatch } from 'react-redux'
 
 const Login = () => {
@@ -27,7 +27,6 @@ const Login = () => {
         dataServices.userLogin(credentials)
             .then(res => {
                 dispatch(setUserData(res.data))
-                console.log(res)
                 accountServices.saveToken(res.body.token)
                 navigate('/account')
             })
