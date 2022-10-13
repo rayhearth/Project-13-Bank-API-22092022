@@ -1,0 +1,24 @@
+.profile {
+    background-color: $bluegrey;
+    padding: 50px;
+    .userForm {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .inputWrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            gap: 20px;
+            input {
+                background-color: #fff;
+                border: 1px solid $greyLight;
+                padding: 10px;
+                min-height: 50px;
+                width: 250px;
+                text-align: left;
+            }
+        }
+    }
+}

@@ -1,0 +1,17 @@
+.account {
+    background-color: white;
+    border: 1px solid $greyLight;
+    padding: 1.25rem 0;
+    margin: 1.25rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    line-height: 1.875rem;
+    h3 {
+        font-size: 1rem;
+    }
+    .account-amount {
+        font-size: 1.75rem;
+        font-weight: bold;
+    }
+}

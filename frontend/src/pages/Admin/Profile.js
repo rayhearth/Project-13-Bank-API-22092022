@@ -1,39 +1,29 @@
 import React from 'react';
+import Account from '../../components/UI/Account';
 
 const Profile = () => {
     return (
-        <div>
-            <h2 className="sr-only">Accounts</h2>
-            <section className="account">
-                <div className="account-content-wrapper">
-                    <h3 className="account-title">Argent Bank Checking (x8349)</h3>
-                    <p className="account-amount">$2,082.79</p>
-                    <p className="account-amount-description">Available Balance</p>
-                </div>
-                <div className="account-content-wrapper cta">
-                    <button className="transaction-button">View transactions</button>
-                </div>
-            </section>
-            <section className="account">
-                <div className="account-content-wrapper">
-                    <h3 className="account-title">Argent Bank Savings (x6712)</h3>
-                    <p className="account-amount">$10,928.42</p>
-                    <p className="account-amount-description">Available Balance</p>
-                </div>
-                <div className="account-content-wrapper cta">
-                    <button className="transaction-button">View transactions</button>
-                </div>
-            </section>
-            <section className="account">
-                <div className="account-content-wrapper">
-                    <h3 className="account-title">Argent Bank Credit Card (x8349)</h3>
-                    <p className="account-amount">$184.30</p>
-                    <p className="account-amount-description">Current Balance</p>
-                </div>
-                <div className="account-content-wrapper cta">
-                    <button className="transaction-button">View transactions</button>
-                </div>
-            </section>
+        <div className='profile'>
+            <div class="header">
+                <h1>Welcome back</h1>
+                <form className='userForm'>
+                    <div className="inputWrapper">
+                        <label htmlFor="firstName"></label>
+                        <input type="text" id="firstName" name='firstName' placeholder='Tony' required />
+                        <label htmlFor="lastName"></label>
+                        <input type="text" id="lastName" name="lastName" placeholder='Starck' required />
+                    </div>
+
+                    <div className="userButtons">
+                        <button className="btn" type="submit" >Save</button>
+                        <button className="btn" type="submit" >Cancel</button>
+                    </div>
+                </form>
+            </div>
+            <div className="accountUser">
+                <h2 className="sr-only">Accounts</h2>
+                <Account />
+            </div>
         </div>
     );
 };

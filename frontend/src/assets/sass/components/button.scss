@@ -1,0 +1,21 @@
+.userButtons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    .btn {
+        background-color: white;
+        border: 1px solid $bluepurple;
+        color: $bluepurple;
+        padding: 10px 0;
+        width: 150px;
+    }
+}
+
+.transaction-button {
+    background-color: $bluepurple;
+    color: white;
+    border: inherit;
+    border-radius: 5px;
+    padding: 10px 20px;
+}
