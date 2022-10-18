@@ -2,17 +2,15 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { dataServices } from '@/_services/Datamanager'
 import { accountServices } from '@/_services/Account.services';
-import { setUserData } from '@/feature/user.slice';
-import { useDispatch } from 'react-redux'
+
 
 const Login = () => {
 
     let navigate = useNavigate()
 
-    const dispatch = useDispatch()
     const [credentials, setCredentials] = useState({
-        email: '',
-        password: ''
+        email: 'tony@stark.com',
+        password: 'password123'
     })
 
     const onChange = (e) => {
@@ -26,7 +24,6 @@ const Login = () => {
         e.preventDefault()
         dataServices.userLogin(credentials)
             .then(res => {
-                dispatch(setUserData(res.data))
                 accountServices.saveToken(res.body.token)
                 navigate('/user')
             })

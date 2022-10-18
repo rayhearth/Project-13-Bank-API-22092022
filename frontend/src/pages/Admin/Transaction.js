@@ -13,14 +13,14 @@ const Transaction = () => {
                 <h3>Balance</h3>
             </div>
             <div className="datas">
-                <i class="fa-sharp fa-solid fa-chevron-up"></i>
+                <i className="fa-sharp fa-solid fa-chevron-up"></i>
                 <p className="date">June 20th</p>
                 <p className="desc">golden</p>
                 <p className="amount">5$</p>
                 <p className="balance">$2000</p>
             </div>
             <div className="datas">
-                <i class="fa-sharp fa-solid fa-chevron-up"></i>
+                <i className="fa-sharp fa-solid fa-chevron-up"></i>
                 <p className="date">June 20th</p>
                 <p className="desc">golden</p>
                 <p className="amount">5$</p>

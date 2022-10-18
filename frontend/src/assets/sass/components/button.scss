@@ -1,3 +1,18 @@
+/* button nav*/
+.main-nav-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    background-color: white;
+    font-weight: bold;
+    font-size: 1rem;
+    border: none;
+    color: $greenDarck;
+    padding: 10px 0;
+}
+
+/*button page profil save/cancel*/
 .userButtons {
     display: flex;
     justify-content: center;
@@ -12,6 +27,7 @@
     }
 }
 
+/*button page profil view transaction*/
 .transaction-button {
     background-color: $bluepurple;
     color: white;
