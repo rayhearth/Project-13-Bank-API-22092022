@@ -11,11 +11,12 @@ export const usersSlice = createSlice({
     token: null,
   },
   reducers: {
-    isLoged: (state, action) => {
-      state.isAuthentificated = action.payload.isAuthentificated;
-      state.email = action.payload.email;
-      state.firstname = action.payload.firstname;
-      state.lastname = action.payload;
+    isLoged: (state, { payload }) => {
+      state.isAuthentificated = true;
+      state.email = payload.email;
+      state.firstname = payload.firstname;
+      state.lastname = payload.lastname;
+      state.token = payload.token
     }
 
     /*const authSlice = createSlice({
@@ -38,5 +39,5 @@ export const usersSlice = createSlice({
 
 
 
-export const { setUserData, setLogin } = usersSlice.actions;
+export const { isLoged } = usersSlice.actions;
 export default usersSlice.reducer;

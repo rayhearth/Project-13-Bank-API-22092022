@@ -1,9 +1,11 @@
+import { useEffect } from 'react';
 import { useQuery } from 'react-query';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { dataServices } from '@/_services/Datamanager';
 
 import Account from '@/components/UI/Account';
+import { isLoged } from '../../feature/user.slice';
 
 
 
@@ -11,11 +13,12 @@ import Account from '@/components/UI/Account';
 const Profile = () => {
 
     const dispatch = useDispatch()
+    //on stocke ds une variable profileData l'ensemble de notre store
     const profileData = useSelector((state) => state.auth)
-    console.log(profileData);
 
     const { isLoading, data, error } = useQuery('user', () => dataServices.userProfile())
-    const user = data || { 'data': [] }
+    const user = data || {}
+    console.log(data);
 
     if (isLoading) {
         return <div>Loading ...</div>
@@ -25,6 +28,13 @@ const Profile = () => {
         return <div className='network-error'>{error.message}</div>
     }
 
+    const onUpdate = () => {
+        dispatch(isLoged({
+            token: data.token,
+            email: data.body.email,
+        }))
+    }
+    console.log();
     return (
         <div className='profile'>
 
@@ -35,11 +45,11 @@ const Profile = () => {
                         <label htmlFor="firstName"></label>
                         <input type="text" id="firstName" name='firstName' placeholder={user.body.firstName} required />
                         <label htmlFor="lastName"></label>
-                        <input type="text" id="lastName" name="lastName" placeholder='Starck' required />
+                        <input type="text" id="lastName" name="lastName" placeholder={user.body.lastName} required />
                     </div>
 
                     <div className="userButtons">
-                        <button className="btn" type="submit" >Save</button>
+                        <button className="btn" onClick={onUpdate} type="submit" >Save</button>
                         <button className="btn" type="submit" >Cancel</button>
                     </div>
                 </form>
