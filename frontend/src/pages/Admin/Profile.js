@@ -1,11 +1,10 @@
-import { useEffect } from 'react';
 import { useQuery } from 'react-query';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { dataServices } from '@/_services/Datamanager';
 
 import Account from '@/components/UI/Account';
-import { isLoged } from '../../feature/user.slice';
+import { isConnected } from '@/feature/user.slice';
 
 
 
@@ -16,9 +15,9 @@ const Profile = () => {
     //on stocke ds une variable profileData l'ensemble de notre store
     const profileData = useSelector((state) => state.auth)
 
+
     const { isLoading, data, error } = useQuery('user', () => dataServices.userProfile())
-    const user = data || {}
-    console.log(data);
+    // const user = data || {}
 
     if (isLoading) {
         return <div>Loading ...</div>
@@ -29,12 +28,19 @@ const Profile = () => {
     }
 
     const onUpdate = () => {
-        dispatch(isLoged({
-            token: data.token,
+        dispatch(isConnected({
+
             email: data.body.email,
+            firstName: data.body.firstName,
+            lastName: data.body.lastName,
+            token: data.token,
         }))
     }
-    console.log();
+
+    const handleEdit = () => {
+
+    }
+
     return (
         <div className='profile'>
 
@@ -43,9 +49,9 @@ const Profile = () => {
                 <form className='userForm'>
                     <div className="inputWrapper">
                         <label htmlFor="firstName"></label>
-                        <input type="text" id="firstName" name='firstName' placeholder={user.body.firstName} required />
+                        <input type="text" id="firstName" name='firstName' placeholder={data.body.firstName} required />
                         <label htmlFor="lastName"></label>
-                        <input type="text" id="lastName" name="lastName" placeholder={user.body.lastName} required />
+                        <input type="text" id="lastName" name="lastName" placeholder={data.body.lastName} required />
                     </div>
 
                     <div className="userButtons">

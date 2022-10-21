@@ -4,18 +4,20 @@ import { createSlice } from "@reduxjs/toolkit";
 export const usersSlice = createSlice({
   name: "auth",
   initialState: {
+    // user: null,
     isAuthentificated: false,
     email: null,
-    firstname: null,
-    lastname: null,
+    firstName: null,
+    lastName: null,
     token: null,
   },
   reducers: {
-    isLoged: (state, { payload }) => {
+    isConnected: (state, { payload }) => {
+      // state.user = payload
       state.isAuthentificated = true;
       state.email = payload.email;
-      state.firstname = payload.firstname;
-      state.lastname = payload.lastname;
+      state.firstName = payload.firstName;
+      state.lastName = payload.lastName;
       state.token = payload.token
     }
 
@@ -39,5 +41,5 @@ export const usersSlice = createSlice({
 
 
 
-export const { isLoged } = usersSlice.actions;
-export default usersSlice.reducer;
+export const { isConnected } = usersSlice.actions
+export default usersSlice.reducer
