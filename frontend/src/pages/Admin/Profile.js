@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { dataServices } from '@/_services/Datamanager';
 
 import Account from '@/components/UI/Account';
-import { isConnected } from '@/feature/user.slice';
+import { isConnected, updateUserData, cancel } from '@/feature/user.slice';
 
 
 
@@ -37,8 +37,23 @@ const Profile = () => {
         }))
     }
 
-    const handleEdit = () => {
+    const handleEdit = (e) => {
+        e.preventDefault()
+        const updatedProfile = {
+            firstName: data.body.firstName,
+            lastName: data.body.lastName,
+        }
+        dispatch(updateUserData(updatedProfile))
 
+    }
+
+    const deleteUser = (e) => {
+        e.preventDefault()
+        const deleteProfile = {
+            firstName: data.body.firstName,
+            lastName: data.body.lastName,
+        }
+        dispatch(cancel(deleteProfile))
     }
 
     return (
@@ -56,7 +71,7 @@ const Profile = () => {
 
                     <div className="userButtons">
                         <button className="btn" onClick={onUpdate} type="submit" >Save</button>
-                        <button className="btn" type="submit" >Cancel</button>
+                        <button className="btn" onClick={deleteUser} type="submit" >Cancel</button>
                     </div>
                 </form>
             </div>

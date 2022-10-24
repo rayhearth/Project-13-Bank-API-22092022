@@ -19,6 +19,14 @@ export const usersSlice = createSlice({
       state.firstName = payload.firstName;
       state.lastName = payload.lastName;
       state.token = payload.token
+    },
+    updateUserData: (state, { payload }) => {
+      state.firstName = '';
+      state.lastName = '';
+    },
+    cancel: (state, { payload }) => {
+      state.firstName.clear()
+      state.lastName.clear()
     }
 
     /*const authSlice = createSlice({
@@ -41,5 +49,5 @@ export const usersSlice = createSlice({
 
 
 
-export const { isConnected } = usersSlice.actions
+export const { isConnected, updateUserData, cancel } = usersSlice.actions
 export default usersSlice.reducer

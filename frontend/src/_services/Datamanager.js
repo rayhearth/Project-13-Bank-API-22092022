@@ -7,6 +7,7 @@ const userLogin = async (credentials) => {
 }
 
 const userProfile = async (userData, token) => {
+
     const { data } = await Axios.post(`/api/v1/user/profile`, userData, token)
     return data
 }
