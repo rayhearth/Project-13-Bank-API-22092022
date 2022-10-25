@@ -4,9 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { dataServices } from '@/_services/Datamanager';
 
 import Account from '@/components/UI/Account';
-import { isConnected, updateUserData, cancel } from '@/feature/user.slice';
-
-
+import { isConnected, updateData } from '@/feature/user.slice';
+import { useState } from 'react';
 
 
 const Profile = () => {
@@ -15,9 +14,12 @@ const Profile = () => {
     //on stocke ds une variable profileData l'ensemble de notre store
     const profileData = useSelector((state) => state.auth)
 
+    const [firstName, setFirstName] = useState('')
+    const [lastName, setLastName] = useState('')
+
 
     const { isLoading, data, error } = useQuery('user', () => dataServices.userProfile())
-    // const user = data || {}
+    const user = data || {}
 
     if (isLoading) {
         return <div>Loading ...</div>
@@ -29,32 +31,23 @@ const Profile = () => {
 
     const onUpdate = () => {
         dispatch(isConnected({
-
-            email: data.body.email,
-            firstName: data.body.firstName,
-            lastName: data.body.lastName,
-            token: data.token,
+            email: user.body.email,
+            firstName: user.body.firstName,
+            lastName: user.body.lastName,
+            token: user.token,
         }))
     }
 
     const handleEdit = (e) => {
         e.preventDefault()
-        const updatedProfile = {
-            firstName: data.body.firstName,
-            lastName: data.body.lastName,
-        }
-        dispatch(updateUserData(updatedProfile))
+
+        dispatch(updateData({
+            firstName: e.target.name,
+            lastName: e.target.name
+        }))
 
     }
 
-    const deleteUser = (e) => {
-        e.preventDefault()
-        const deleteProfile = {
-            firstName: data.body.firstName,
-            lastName: data.body.lastName,
-        }
-        dispatch(cancel(deleteProfile))
-    }
 
     return (
         <div className='profile'>
@@ -64,14 +57,14 @@ const Profile = () => {
                 <form className='userForm'>
                     <div className="inputWrapper">
                         <label htmlFor="firstName"></label>
-                        <input type="text" id="firstName" name='firstName' placeholder={data.body.firstName} required />
+                        <input type="text" id="firstName" name='firstName' placeholder={data.body.firstName} onChange={(e) => setFirstName(e.target.value)} required />
                         <label htmlFor="lastName"></label>
-                        <input type="text" id="lastName" name="lastName" placeholder={data.body.lastName} required />
+                        <input type="text" id="lastName" name="lastName" placeholder={data.body.lastName} onChange={(e) => setLastName(e.target.value)} required />
                     </div>
 
                     <div className="userButtons">
-                        <button className="btn" onClick={onUpdate} type="submit" >Save</button>
-                        <button className="btn" onClick={deleteUser} type="submit" >Cancel</button>
+                        <button className="btn" onClick={handleEdit} type="submit" >Save</button>
+                        <button className="btn" onClick={onUpdate} type="submit" >Cancel</button>
                     </div>
                 </form>
             </div>

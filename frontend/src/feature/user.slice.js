@@ -14,40 +14,20 @@ export const usersSlice = createSlice({
   reducers: {
     isConnected: (state, { payload }) => {
       // state.user = payload
-      state.isAuthentificated = true;
+      state.isAuthentificated = !payload.isAuthentificated;
       state.email = payload.email;
       state.firstName = payload.firstName;
       state.lastName = payload.lastName;
       state.token = payload.token
     },
-    updateUserData: (state, { payload }) => {
-      state.firstName = '';
-      state.lastName = '';
+    updateData: (state, { payload }) => {
+      state.firstName = payload.firstName;
+      state.lastName = payload.lastName;
     },
-    cancel: (state, { payload }) => {
-      state.firstName.clear()
-      state.lastName.clear()
-    }
-
-    /*const authSlice = createSlice({
-  name: "authentification",
-  initialState: {
-    isAuthentificated: false,
-    email: null,
-    firstname: null,
-    lastname: null,
-    token: null,
-  },
-  reducers: {
-    isLoggedIn: (state, action) => {
-      state.isAuthentificated = action.payload.isAuthentificated;
-      state.email = action.payload.email;
-      state.firstname = action.payload.firstname;
-      state.lastname = action.payload.*/
   }
 })
 
 
 
-export const { isConnected, updateUserData, cancel } = usersSlice.actions
+export const { isConnected, updateData } = usersSlice.actions
 export default usersSlice.reducer

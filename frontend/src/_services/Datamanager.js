@@ -13,8 +13,8 @@ const userProfile = async (userData, token) => {
 }
 
 const updateUserData = async (newData, token) => {
-    const { data } = await Axios.put(`/api/v1/user/profile`, newData, token)
-    return data
+    const { change } = await Axios.put(`/api/v1/user/profile`, newData, token)
+    return change
 }
 
 
