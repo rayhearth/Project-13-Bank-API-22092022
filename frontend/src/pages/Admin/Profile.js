@@ -14,12 +14,22 @@ const Profile = () => {
     //on stocke ds une variable profileData l'ensemble de notre store
     const profileData = useSelector((state) => state.auth)
 
-    const [firstName, setFirstName] = useState('')
-    const [lastName, setLastName] = useState('')
+    const [edit, setEdit] = useState({
+        firstName: '',
+        lastName: ''
+    })
+
+    const onChange = (e) => {
+        setEdit({
+            ...edit,
+            [e.target.name]: e.target.value
+        })
+    }
 
 
     const { isLoading, data, error } = useQuery('user', () => dataServices.userProfile())
     const user = data || {}
+    console.log(user);
 
     if (isLoading) {
         return <div>Loading ...</div>
@@ -40,12 +50,13 @@ const Profile = () => {
 
     const handleEdit = (e) => {
         e.preventDefault()
-
-        dispatch(updateData({
-            firstName: e.target.name,
-            lastName: e.target.name
-        }))
-
+        dataServices.updateUserData(edit)
+            .then(() => {
+                dispatch(updateData({
+                    firstName: user.body.firstName,
+                    lastName: user.body.lastName,
+                }))
+            })
     }
 
 
@@ -57,9 +68,9 @@ const Profile = () => {
                 <form className='userForm'>
                     <div className="inputWrapper">
                         <label htmlFor="firstName"></label>
-                        <input type="text" id="firstName" name='firstName' placeholder={data.body.firstName} onChange={(e) => setFirstName(e.target.value)} required />
+                        <input type="text" id="firstName" name='firstName' value={edit.firstName} placeholder={data.body.firstName} onChange={onChange} required />
                         <label htmlFor="lastName"></label>
-                        <input type="text" id="lastName" name="lastName" placeholder={data.body.lastName} onChange={(e) => setLastName(e.target.value)} required />
+                        <input type="text" id="lastName" name="lastName" value={edit.lastName} placeholder={data.body.lastName} onChange={onChange} required />
                     </div>
 
                     <div className="userButtons">
