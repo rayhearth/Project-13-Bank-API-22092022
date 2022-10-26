@@ -13,9 +13,14 @@ const userProfile = async (userData, token) => {
 }
 
 const updateUserData = async (newData, token) => {
-    const { change } = await Axios.put(`/api/v1/user/profile`, newData, token)
-    return change
+    const { data } = await Axios.put(`/api/v1/user/profile`, newData, token)
+    return data
 }
+
+// const handleDelete = async (newData) => {
+//     const { data } = await Axios.delete(`/api/v1/user/profile`, newData)
+//     return data
+// }
 
 
 export const dataServices = {

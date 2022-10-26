@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { dataServices } from '@/_services/Datamanager';
 
 import Account from '@/components/UI/Account';
-import { isConnected, updateData } from '@/feature/user.slice';
+import { isConnected, updateData, cancel } from '@/feature/user.slice';
 import { useState } from 'react';
 
 
@@ -26,10 +26,9 @@ const Profile = () => {
         })
     }
 
-
     const { isLoading, data, error } = useQuery('user', () => dataServices.userProfile())
     const user = data || {}
-    console.log(user);
+    // console.log(user);
 
     if (isLoading) {
         return <div>Loading ...</div>
@@ -59,6 +58,16 @@ const Profile = () => {
             })
     }
 
+    const userDelete = () => {
+        dataServices.updateUserData(edit)
+            .then(() => {
+                dispatch(cancel({
+                    firstName: '',
+                    lastName: '',
+                }))
+            })
+    }
+
 
     return (
         <div className='profile'>
@@ -75,7 +84,7 @@ const Profile = () => {
 
                     <div className="userButtons">
                         <button className="btn" onClick={handleEdit} type="submit" >Save</button>
-                        <button className="btn" onClick={onUpdate} type="submit" >Cancel</button>
+                        <button className="btn" onClick={userDelete} type="submit" >Cancel</button>
                     </div>
                 </form>
             </div>

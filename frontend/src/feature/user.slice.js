@@ -13,7 +13,6 @@ export const usersSlice = createSlice({
   },
   reducers: {
     isConnected: (state, { payload }) => {
-      // state.user = payload
       state.isAuthentificated = !payload.isAuthentificated;
       state.email = payload.email;
       state.firstName = payload.firstName;
@@ -24,10 +23,14 @@ export const usersSlice = createSlice({
       state.firstName = payload.firstName;
       state.lastName = payload.lastName;
     },
+    cancel: (state, { payload }) => {
+      state.firstName = payload.firstName;
+      state.lastName = payload.lastName;
+    }
   }
 })
 
 
 
-export const { isConnected, updateData } = usersSlice.actions
+export const { isConnected, updateData, cancel } = usersSlice.actions
 export default usersSlice.reducer
