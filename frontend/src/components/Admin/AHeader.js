@@ -1,4 +1,3 @@
-import { useQuery } from 'react-query';
 import { useSelector } from 'react-redux';
 
 import { useNavigate, Link } from 'react-router-dom';
@@ -15,10 +14,8 @@ const AHeader = () => {
         navigate('/user')
     }
 
-    const { isLoading, data, error } = useQuery('user', () => dataServices.userProfile())
-    const user = data || {}
 
-    // const firstName = useSelector((state) => state.auth)
+    const firstName = useSelector((state) => state.auth)
 
     const logout = () => {
         accountServices.logout()
@@ -40,7 +37,7 @@ const AHeader = () => {
                 <div className='linkContent'>
                     <button className="main-nav-item" onClick={profile}>
                         <i className="fa fa-user-circle"></i>
-                        {user.body.firstName}
+                        {/* {user.body.firstName} */}
                     </button>
 
                     <button className="main-nav-item" onClick={logout}>
