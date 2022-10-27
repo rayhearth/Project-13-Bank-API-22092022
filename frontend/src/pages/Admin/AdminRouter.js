@@ -12,10 +12,10 @@ const AdminRouter = () => {
         <Routes>
             <Route element={<ALayout />}>
                 <Route index element={<Profile />}></Route>
-                <Route path='user'>
-                    <Route path=':id' element={<Profile />} />
-                </Route>
+
+                <Route path='user' element={<Profile />} />
                 <Route path='/account' element={<Transaction />} />
+
                 <Route path='*' element={<Error />} />
             </Route>
         </Routes>

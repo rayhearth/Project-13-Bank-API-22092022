@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import { useQuery } from 'react-query';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -5,7 +7,6 @@ import { dataServices } from '@/_services/Datamanager';
 
 import Account from '@/components/UI/Account';
 import { updateData, cancel } from '@/feature/user.slice';
-import { useState } from 'react';
 
 
 const Profile = () => {
