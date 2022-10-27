@@ -1,7 +1,9 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+
+import { useNavigate, Link } from 'react-router-dom';
 import { accountServices } from '@/_services/Account.services';
-import { Link } from 'react-router-dom';
+
+import { useSelector } from 'react-redux';
 
 const AHeader = () => {
 
@@ -10,6 +12,9 @@ const AHeader = () => {
     const profile = () => {
         navigate('/user')
     }
+
+    const firstName = useSelector((state) => state.auth)
+    console.log(firstName);
 
     const logout = () => {
         accountServices.logout()
@@ -31,7 +36,7 @@ const AHeader = () => {
                 <div className='linkContent'>
                     <button className="main-nav-item" onClick={profile}>
                         <i className="fa fa-user-circle"></i>
-                        Tony
+                        {firstName}
                     </button>
 
                     <button className="main-nav-item" onClick={logout}>

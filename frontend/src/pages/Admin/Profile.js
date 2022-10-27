@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { dataServices } from '@/_services/Datamanager';
 
 import Account from '@/components/UI/Account';
-import { isConnected, updateData, cancel } from '@/feature/user.slice';
+import { updateData, cancel } from '@/feature/user.slice';
 import { useState } from 'react';
 
 
@@ -38,22 +38,13 @@ const Profile = () => {
         return <div className='network-error'>{error.message}</div>
     }
 
-    const onUpdate = () => {
-        dispatch(isConnected({
-            email: user.body.email,
-            firstName: user.body.firstName,
-            lastName: user.body.lastName,
-            token: user.token,
-        }))
-    }
-
     const handleEdit = (e) => {
         e.preventDefault()
         dataServices.updateUserData(edit)
             .then(() => {
                 dispatch(updateData({
-                    firstName: user.body.firstName,
-                    lastName: user.body.lastName,
+                    firstName: edit.firstName,
+                    lastName: edit.lastName,
                 }))
             })
     }
@@ -77,9 +68,9 @@ const Profile = () => {
                 <form className='userForm'>
                     <div className="inputWrapper">
                         <label htmlFor="firstName"></label>
-                        <input type="text" id="firstName" name='firstName' value={edit.firstName} placeholder={data.body.firstName} onChange={onChange} required />
+                        <input type="text" id="firstName" name='firstName' value={edit.firstName} placeholder={user.body.firstName} onChange={onChange} required />
                         <label htmlFor="lastName"></label>
-                        <input type="text" id="lastName" name="lastName" value={edit.lastName} placeholder={data.body.lastName} onChange={onChange} required />
+                        <input type="text" id="lastName" name="lastName" value={edit.lastName} placeholder={user.body.lastName} onChange={onChange} required />
                     </div>
 
                     <div className="userButtons">
