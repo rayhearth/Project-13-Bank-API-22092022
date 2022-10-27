@@ -1,5 +1,5 @@
 
-![Logo]()
+![Logo](https://github.com/rayhearth/Project-13-Bank-API-22092022/blob/master/frontend/public/assets/img/argentBankLogo.png)
 
 
 # P13-Utilisez une API pour un compte utilisateur bancaire avec React
