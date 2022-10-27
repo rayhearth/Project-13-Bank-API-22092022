@@ -1,6 +1,5 @@
-import { useState } from 'react';
-
 import { useQuery } from 'react-query';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { dataServices } from '@/_services/Datamanager';

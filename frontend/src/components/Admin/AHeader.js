@@ -1,11 +1,11 @@
-import React from 'react';
+import { useQuery } from 'react-query';
+import { useSelector } from 'react-redux';
 
 import { useNavigate, Link } from 'react-router-dom';
 import { accountServices } from '@/_services/Account.services';
 
-import { useSelector } from 'react-redux';
-import { useQuery } from 'react-query';
 import { dataServices } from '@/_services/Datamanager';
+import React from 'react';
 
 const AHeader = () => {
 
@@ -18,7 +18,7 @@ const AHeader = () => {
     const { isLoading, data, error } = useQuery('user', () => dataServices.userProfile())
     const user = data || {}
 
-    const firstName = useSelector((state) => state.auth)
+    // const firstName = useSelector((state) => state.auth)
 
     const logout = () => {
         accountServices.logout()
