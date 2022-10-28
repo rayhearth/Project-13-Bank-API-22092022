@@ -1,6 +1,12 @@
 import Axios from "./Caller.services";
 
 
+const userLogin = async (credentials) => {
+    const { data } = await Axios.post(`/api/v1/user/login`, credentials)
+    return data
+}
+
+
 const userProfile = async (userData, token) => {
 
     const { data } = await Axios.post(`/api/v1/user/profile`, userData, token)

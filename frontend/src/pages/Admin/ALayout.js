@@ -1,7 +1,7 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import AHeader from '@/components/Admin/AHeader';
-import Footer from '@/components/layout/Footer';
+import Footer from '@/components/Layout/Footer';
 
 const ALayout = () => {
     return (
