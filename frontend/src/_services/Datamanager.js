@@ -1,26 +1,6 @@
 import Axios from "./Caller.services";
 
-/**
- * [userLogin description]
- *
- * @param   {[type]}  credentials  [credentials description]
- *
- * @return  {[type]}               [return description]
- */
-const userLogin = async (credentials) => {
-    const { data } = await Axios.post(`/api/v1/user/login`, credentials)
-    return data
-}
 
-
-/**
- * [userProfile description]
- *
- * @param   {[type]}  userData  [userData description]
- * @param   {[type]}  token     [token description]
- *
- * @return  {[type]}            [return description]
- */
 const userProfile = async (userData, token) => {
 
     const { data } = await Axios.post(`/api/v1/user/profile`, userData, token)

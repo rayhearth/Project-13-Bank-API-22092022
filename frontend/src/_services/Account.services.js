@@ -21,3 +21,4 @@ let getToken = () => {
 export const accountServices = {
     saveToken, logout, isLogged, getToken
 }
+
