@@ -1,45 +1,56 @@
 .hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  // padding: 5rem;
+  .hero-content {
     background-image: url("../../img/bank-tree.jpeg");
-    display: flex;
-    align-items: center;
-    padding: 5rem;
-    background-position: center center;
+    background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    .hero-content {
-        width: 23rem;
-        padding: 2rem;
-        background: white;
-        .subtitle {
-            font-weight: bold;
-        }
-        .text {
-            font-size: 1.2rem;
-        }
+    width: 100%;
+    padding: 6.25rem;
+    display: flex;
+    justify-content: flex-end;
+    .text-content {
+      padding: 3.125rem;
+      background: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      width: 35%;
+      .subtitle {
+        font-weight: bold;
+      }
+      .text {
+        font-size: 1.2rem;
+        text-align: left;
+        padding-top: 20px;
+      }
     }
+  }
 }
 
 @media (min-width: 768px) {
-    .hero {
-        justify-content: flex-end;
-        height: 25rem;
-        .subtitle {
-            font-size: 1.5rem;
-        }
-        .text {
-            font-size: 1.2rem;
-        }
+  .hero {
+    .subtitle {
+      font-size: 1.5rem;
     }
+    .text {
+      font-size: 1.2rem;
+    }
+  }
 }
 
 @media (max-width: 768px) {
-    .hero {
-        justify-content: center;
-        .subtitle {
-            font-size: 1rem;
-        }
-        .text {
-            font-size: 0.9rem;
-        }
+  .hero {
+    justify-content: center;
+    .subtitle {
+      font-size: 1rem;
     }
+    .text {
+      font-size: 0.9rem;
+    }
+  }
 }
