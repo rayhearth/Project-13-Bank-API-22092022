@@ -5,6 +5,7 @@ import { accountServices } from '@/_services/Account.services';
 
 import { dataServices } from '@/_services/Datamanager';
 import React from 'react';
+import { useState } from 'react';
 
 const AHeader = () => {
 
@@ -15,7 +16,7 @@ const AHeader = () => {
     }
 
 
-    const firstName = useSelector((state) => state.auth)
+    const user = useSelector((state) => state.user)
 
     const logout = () => {
         accountServices.logout()
@@ -37,7 +38,7 @@ const AHeader = () => {
                 <div className='linkContent'>
                     <button className="main-nav-item" onClick={profile}>
                         <i className="fa fa-user-circle"></i>
-                        {/* {user.body.firstName} */}
+                        {user.firstName}
                     </button>
 
                     <button className="main-nav-item" onClick={logout}>

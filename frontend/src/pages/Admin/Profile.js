@@ -1,5 +1,5 @@
 import { useQuery } from 'react-query';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { dataServices } from '@/_services/Datamanager';
@@ -19,7 +19,6 @@ const Profile = () => {
         lastName: ''
     })
 
-
     const onChange = (e) => {
         setEdit({
             ...edit,
@@ -29,7 +28,38 @@ const Profile = () => {
 
     const { isLoading, data, error } = useQuery('user', () => dataServices.userProfile())
     const user = data || {}
-    // console.log(user);
+
+    useEffect(() => {
+        if (isLoading) {
+            dispatch(dataServices.updateUserData())
+        }
+    }, [])
+
+    // export default function useEmployee(id) {
+    //     const initial = {
+    //       name: '',
+    //       address: '',
+    //     };
+
+    //     const { data, isFetching, isLoading } = useQuery(['fetchEmployee', id], () => getEmployee(id), {
+    //       initialData: initial,
+    //       onSettled: () => dispatch(clearWaiting()),
+    //       onError: (err) => dispatch(showError(err)),
+    //     });
+
+    //     useEffect(() => {
+    //       if (isFetching || isLoading) {
+    //         dispatch(setWaiting());
+    //       }
+    //     }, [isFetching, isLoading]);
+
+    //     return data;
+    //   }
+
+
+
+
+
 
     if (isLoading) {
         return <div>Loading ...</div>
@@ -38,6 +68,13 @@ const Profile = () => {
     if (error) {
         return <div className='network-error'>{error.message}</div>
     }
+    // else {
+    //     dispatch(updateData({
+    //         firstName: user.body.firstName,
+    //         lastName: user.body.lastName,
+    //     }))
+    // }
+
 
     const handleEdit = (e) => {
         e.preventDefault()
