@@ -17,6 +17,7 @@ const AHeader = () => {
 
 
     const user = useSelector((state) => state.user)
+    console.log(user);
 
     const logout = () => {
         accountServices.logout()

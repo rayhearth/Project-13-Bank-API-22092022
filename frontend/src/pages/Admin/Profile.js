@@ -28,37 +28,19 @@ const Profile = () => {
 
     const { isLoading, data, error } = useQuery('user', () => dataServices.userProfile())
     const user = data || {}
+    console.log(user);
 
     useEffect(() => {
         if (isLoading) {
-            dispatch(dataServices.updateUserData())
+            dataServices.updateUserData(edit)
+                .then(() => {
+                    dispatch(updateData({
+                        firstName: edit.firstName,
+                        lastName: edit.lastName,
+                    }))
+                })
         }
     }, [])
-
-    // export default function useEmployee(id) {
-    //     const initial = {
-    //       name: '',
-    //       address: '',
-    //     };
-
-    //     const { data, isFetching, isLoading } = useQuery(['fetchEmployee', id], () => getEmployee(id), {
-    //       initialData: initial,
-    //       onSettled: () => dispatch(clearWaiting()),
-    //       onError: (err) => dispatch(showError(err)),
-    //     });
-
-    //     useEffect(() => {
-    //       if (isFetching || isLoading) {
-    //         dispatch(setWaiting());
-    //       }
-    //     }, [isFetching, isLoading]);
-
-    //     return data;
-    //   }
-
-
-
-
 
 
     if (isLoading) {
@@ -68,12 +50,6 @@ const Profile = () => {
     if (error) {
         return <div className='network-error'>{error.message}</div>
     }
-    // else {
-    //     dispatch(updateData({
-    //         firstName: user.body.firstName,
-    //         lastName: user.body.lastName,
-    //     }))
-    // }
 
 
     const handleEdit = (e) => {
@@ -106,9 +82,9 @@ const Profile = () => {
                 <form className='userForm'>
                     <div className="inputWrapper">
                         <label htmlFor="firstName"></label>
-                        <input type="text" id="firstName" name='firstName' value={edit.firstName} placeholder={user.body.firstName} onChange={onChange} required />
+                        <input type="text" id="firstName" name='firstName' value={edit.firstName} placeholder={edit.firstName} onChange={onChange} required />
                         <label htmlFor="lastName"></label>
-                        <input type="text" id="lastName" name="lastName" value={edit.lastName} placeholder={user.body.lastName} onChange={onChange} required />
+                        <input type="text" id="lastName" name="lastName" value={edit.lastName} placeholder={edit.lastName} onChange={onChange} required />
                     </div>
 
                     <div className="userButtons">
