@@ -10,10 +10,12 @@ const Login = () => {
 
     const [credentials, setCredentials] = useState({
         email: 'tony@stark.com',
-        password: 'password123'
+        password: 'password123',
+        remember: false,
     })
 
     const onChange = (e) => {
+        console.log(e);
         setCredentials({
             ...credentials,
             [e.target.name]: e.target.value
@@ -27,6 +29,7 @@ const Login = () => {
                 accountServices.saveToken(res.body.token)
                 navigate('/user')
             })
+            .then()
             .catch(error => console.log(error))
     }
 
@@ -44,8 +47,14 @@ const Login = () => {
                         <label htmlFor="password">Password</label>
                         <input type="password" name='password' value={credentials.password} onChange={onChange} id="password" />
                     </div>
+
                     <div className="input-remember">
-                        <input type="checkbox" id="remember-me" />
+                        <input
+                            type="checkbox"
+                            id="remember-me"
+                            className="form-check-input"
+                            onChange={onChange}
+                        />
                         <label htmlFor="remember-me">Remember me</label>
                     </div>
 
