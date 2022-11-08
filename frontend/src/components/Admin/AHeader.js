@@ -3,9 +3,7 @@ import { useSelector } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom';
 import { accountServices } from '@/_services/Account.services';
 
-import { dataServices } from '@/_services/Datamanager';
 import React from 'react';
-import { useState } from 'react';
 
 const AHeader = () => {
 
@@ -15,10 +13,15 @@ const AHeader = () => {
         navigate('/user')
     }
 
-
+    /**
+     * permet de récupérer le store à jour avec les nouveaux noms en temps réel
+     * @const {string}
+     */
     const user = useSelector((state) => state.user)
-    console.log(user);
 
+    /**
+     * methode de account service enlève le token et efface le localstorage
+     */
     const logout = () => {
         accountServices.logout()
         navigate('/login')

@@ -52,6 +52,7 @@ const Profile = () => {
     }
 
 
+
     const handleEdit = (e) => {
         e.preventDefault()
         dataServices.updateUserData(edit)
@@ -76,13 +77,12 @@ const Profile = () => {
 
     return (
         <div className='profile'>
-
             <div className="header">
                 <h1>Welcome back</h1>
                 <form className='userForm'>
                     <div className="inputWrapper">
                         <label htmlFor="firstName"></label>
-                        <input type="text" id="firstName" name='firstName' value={edit.firstName} placeholder={edit.firstName} onChange={onChange} required />
+                        <input type="text" id="firstName" name='firstName' value={edit.firstName} placeholder={user.body.firstName} onChange={onChange} required />
                         <label htmlFor="lastName"></label>
                         <input type="text" id="lastName" name="lastName" value={edit.lastName} placeholder={edit.lastName} onChange={onChange} required />
                     </div>

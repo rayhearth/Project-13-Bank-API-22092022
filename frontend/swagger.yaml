@@ -1,0 +1,355 @@
+swagger: '2.0'
+info:
+  title: Bank Argent API documentation
+  description: Contains all available API endpoints in this codebase
+  version: '1.0.0'
+  termsOfService: 'http://swagger.io/terms/'
+host: localhost:3001
+basePath: /api/v1
+tags:
+  - name: Login Module
+  - name: User Acount
+  - name: Transaction Module
+schemes:
+  - http
+paths:
+  /user/login:
+    post:
+      tags:
+        - User Module
+      summary: Login
+      description: API for Login
+      parameters:
+        - in: body
+          name: credentials
+          description: Login and password user
+          required: true
+          schema:
+            $ref: '#/definitions/Credentials'
+      responses:
+        '200':
+          description: Login Successfully
+          schema:
+            $ref: '#/definitions/User'
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
+
+  /user/signout:
+    post:
+      tags:
+        - User Module
+      summary: Signout a user
+      description: API for Signout , delete token and clear local storage
+      parameters:
+        - $ref: '#/parameters/X-Auth-Token'
+      responses:
+        '200':
+          description: token deleted, return to /user/login
+        '400':
+          description: Invalid Fields
+
+  /user/profil:
+    post:
+      security:
+        - Bearer: []
+      tags:
+        - User Module
+      summary: User Profile API
+      description: API for fetching a user profile
+      parameters:
+        - in: header
+          name: Authorization
+          description: Attach Bearer JWT token
+          type: string
+      responses:
+        '200':
+          description: User profile retrieved successfully, token retrieve
+          schema:
+            $ref: '#/definitions/User'
+        '400':
+          description: Invalid Fields return to /user/login
+        '500':
+          description: Internal Server Error
+
+    put:
+      security:
+        - Bearer: []
+      tags:
+        - User Module
+      summary: User Profile API
+      description: API for updating a user profile
+      parameters:
+        - in: header
+          type: string
+          name: Authorization
+          description: Attach Bearer JWT token
+          required: true
+        - in: body
+          name: body
+          description: Update user profile attributes
+          required: true
+          schema:
+            $ref: '#/definitions/User'
+      responses:
+        '204':
+          description: User profile retrieved successfully, token retrieve and attributes updated
+          schema:
+            $ref: '#/definitions/User'
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
+
+  /user/account:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - User Account
+      summary: User Account API
+      description: API for fetching a list of transaction for the current month
+      parameters:
+        - in: header
+          type: string
+          name: Authorization
+          description: Attach Bearer JWT token
+          required: true
+      responses:
+        '200':
+          description: User account retrieved successfully
+          schema:
+            $ref: '#/definitions/UserAccount'
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
+
+  /user/account/transactionsId:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - Transaction Module
+      summary: User search TransactionbyID API
+      description: API for fetching one transaction for the current month with its id
+      parameters:
+        - in: query
+          type: string
+          name: id
+          description: find one transaction by id
+          required: true
+        - in: header
+          type: string
+          name: Authorization
+          description: Attach Bearer JWT token
+          required: true
+      responses:
+        '200':
+          description: transaction by id retrieved successfully
+          schema:
+            $ref: '#/definitions/Transaction'
+        '400':
+          description: transaction not found
+        '500':
+          description: Internal Server Error
+
+    post:
+      security:
+        - Bearer: []
+      tags:
+        - Transaction module
+      summary: User search a specific transaction and add some informations
+      description: API for fetching a specific transaction with its id and add some informations
+      parameters:
+        - in: query
+          type: string
+          name: id
+          description: find one transaction by id and add some informations
+          required: true
+        - in: header
+          type: string
+          name: Authorization
+          description: Attach Bearer JWT token
+          required: true
+        - in: body
+          name: body
+          required: true
+          description: add some informations to transaction attributes
+          schema:
+            $ref: '#/definitions/Transaction'
+      responses:
+        '200':
+          description: Transaction retrieved successfully and add informations
+          schema:
+            $ref: '#/definitions/Transaction'
+        '400':
+          description: unable to add information
+        '500':
+          description: Internal Server Error
+
+    put:
+      security:
+        - Bearer: []
+      tags:
+        - Transaction module
+      summary: User search and update a specific transaction
+      description: API for fetching one transaction for the current month with its id and update informations
+      parameters:
+        - in: query
+          type: string
+          name: id
+          description: find one transaction by id and update some informations
+          required: true
+        - in: header
+          type: string
+          name: Authorization
+          description: Attach Bearer JWT token
+          required: true
+        - in: body
+          name: body
+          required: true
+          description: Add some information to transaction by id retrieved successfully
+          schema:
+            $ref: '#/definitions/Transaction'
+      responses:
+        '204':
+          description: Transaction updated successfully
+          schema:
+            $ref: '#/definitions/Transaction'
+        '400':
+          description: unable to add update
+        '500':
+          description: Internal Server Error
+
+    delete:
+      security:
+        - Bearer: []
+      tags:
+        - Transaction module
+      summary: User serach a specific transaction and delete some informations
+      description: API for fetching one transaction for the current month with its id and delete some information
+      parameters:
+        - in: query
+          type: string
+          name: id
+          description: find one transaction by id and delete some informations
+          required: true
+        - in: header
+          type: string
+          name: Authorization
+          description: Attach Bearer JWT token
+          required: true
+      responses:
+        '200':
+          description: Transaction informations deleted successfully
+          schema:
+            $ref: '#/definitions/DeletedTransaction'
+        '400':
+          description: unable to delete information
+        '500':
+          description: Internal Server Error
+
+parameters:
+  X-Auth-Token:
+    name: X-Auth-Token
+    in: header
+    type: string
+    required: true
+    description: value of authentificated token
+
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: Authorization
+    in: header
+
+definitions:
+  Credentials:
+    type: object
+    required: [email, password]
+    properties:
+      userName:
+        type: string
+        format: email
+        description: user email
+      password:
+        type: string
+        description: user password
+
+  User:
+    type: object
+    properties:
+      id:
+        type: object
+      email:
+        type: string
+        format: email
+      firstname:
+        type: string
+      lastname:
+        type: string
+
+  UserAccount:
+    type: object
+    properties:
+      status:
+        type: integer
+      body:
+        type: object
+        properties:
+          id:
+            type: integer
+
+          name:
+            type: string
+          balance:
+            type: number
+
+  Transaction:
+    type: object
+    properties:
+      id:
+        type: integer
+      createdAt:
+        type: string
+        format: date-time
+      name:
+        type: string
+      amount:
+        type: integer
+      balance:
+        type: integer
+      type:
+        $ref: '#/definitions/TransactionsType'
+      category:
+        $ref: '#/definitions/TransactionsCategory'
+      notes:
+        type: string
+
+  TransactionsType:
+    type: object
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+
+  TransactionsCategory:
+    type: object
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+
+  DeletedTransaction:
+    type: object
+    properties:
+      status:
+        type: integer
+        example: 200
+      message:
+        type: string
+        example: Your request has been sucessfully
