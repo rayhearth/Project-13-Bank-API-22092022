@@ -30,6 +30,10 @@ const Profile = () => {
     const user = data || {}
     console.log(user);
 
+    /**
+     * when the page mount the new information store is dispatching in the component
+     * @return  {state}  the stat with the updated datas
+     */
     useEffect(() => {
         if (isLoading) {
             dataServices.updateUserData(edit)
@@ -42,7 +46,6 @@ const Profile = () => {
         }
     }, [])
 
-
     if (isLoading) {
         return <div>Loading ...</div>
     }
@@ -51,8 +54,11 @@ const Profile = () => {
         return <div className='network-error'>{error.message}</div>
     }
 
-
-
+    /**
+     * on Click save the new parameters and update data
+     * @param   {event}  e 
+     * @return  {state}     return edit state with updated data from the store
+     */
     const handleEdit = (e) => {
         e.preventDefault()
         dataServices.updateUserData(edit)
@@ -64,6 +70,11 @@ const Profile = () => {
             })
     }
 
+    /**
+     * onClick delete the parameters
+     *
+     * @return  {state}  return edit state with empty datas
+     */
     const userDelete = () => {
         dataServices.updateUserData(edit)
             .then(() => {
