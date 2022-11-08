@@ -14,7 +14,6 @@ const Profile = () => {
     //on stocke ds une variable profileData l'ensemble de notre store
     const profileData = useSelector((state) => state.user)
 
-    const [isEditing, setIsEditing] = useState(false)
     const [edit, setEdit] = useState({
         firstName: '',
         lastName: ''
@@ -28,11 +27,10 @@ const Profile = () => {
     }
 
     const { isLoading, data, error } = useQuery('user', () => dataServices.userProfile())
-    // const user = data || {}
 
     /**
      * when the page mount the new information store is dispatching in the component
-     * @return  {state}  the stat with the updated datas
+     * @return  {state}  the state with the updated data
      */
     useEffect(() => {
         if (isLoading) {
@@ -43,6 +41,7 @@ const Profile = () => {
                         lastName: data.body.lastName,
                     }))
                 })
+                .catch(err => console.log('an error occurs', err))
         }
     }, [])
 
@@ -56,26 +55,22 @@ const Profile = () => {
 
     /**
      * on Click save the new parameters and update data
-     * @param   {event}  e 
      * @return  {state}     return edit state with updated data from the store
      */
     const handleEdit = (e) => {
-        console.log('bonjour');
         e.preventDefault()
         dataServices.updateUserData(edit)
             .then(() => {
-                console.log(edit);
                 dispatch(updateData({
                     firstName: edit.firstName,
                     lastName: edit.lastName,
                 }))
             })
-            .catch((e) => console.log(e))
+            .catch(err => console.log('an error occurs', err))
     }
 
     /**
      * onClick delete the parameters
-     *
      * @return  {state}  return edit state with empty datas
      */
     const userDelete = () => {
@@ -86,6 +81,7 @@ const Profile = () => {
                     lastName: '',
                 }))
             })
+            .catch(err => console.log('an error occurs', err))
     }
 
 
@@ -99,14 +95,12 @@ const Profile = () => {
                         <input type="text"
                             id="firstName"
                             name="firstName"
-                            style={{ color: isEditing ? "#ccc" : "#5256ec" }}
                             defaultValue={profileData.firstName}
                             onChange={onChange} required />
                         <label htmlFor="lastName"></label>
                         <input type="text"
                             id="lastName"
                             name="lastName"
-                            style={{ color: isEditing ? "#ccc" : "#5256ec" }}
                             defaultValue={profileData.lastName}
                             onChange={onChange} required />
                     </div>

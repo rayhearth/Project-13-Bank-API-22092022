@@ -23,8 +23,8 @@ export const usersSlice = createSlice({
       state.lastName = payload.lastName;
     },
     cancel: (state, { payload }) => {
-      state.firstName = payload.firstName;
-      state.lastName = payload.lastName;
+      state.firstName = ' ';
+      state.lastName = ' ';
     }
   }
 })
