@@ -12,8 +12,9 @@ const Profile = () => {
 
     const dispatch = useDispatch()
     //on stocke ds une variable profileData l'ensemble de notre store
-    const profileData = useSelector((state) => state.auth)
+    const profileData = useSelector((state) => state.user)
 
+    const [isEditing, setIsEditing] = useState(false)
     const [edit, setEdit] = useState({
         firstName: '',
         lastName: ''
@@ -27,8 +28,7 @@ const Profile = () => {
     }
 
     const { isLoading, data, error } = useQuery('user', () => dataServices.userProfile())
-    const user = data || {}
-    console.log(user);
+    // const user = data || {}
 
     /**
      * when the page mount the new information store is dispatching in the component
@@ -36,11 +36,11 @@ const Profile = () => {
      */
     useEffect(() => {
         if (isLoading) {
-            dataServices.updateUserData(edit)
-                .then(() => {
+            dataServices.userProfile()
+                .then((data) => {
                     dispatch(updateData({
-                        firstName: edit.firstName,
-                        lastName: edit.lastName,
+                        firstName: data.body.firstName,
+                        lastName: data.body.lastName,
                     }))
                 })
         }
@@ -60,14 +60,17 @@ const Profile = () => {
      * @return  {state}     return edit state with updated data from the store
      */
     const handleEdit = (e) => {
+        console.log('bonjour');
         e.preventDefault()
         dataServices.updateUserData(edit)
             .then(() => {
+                console.log(edit);
                 dispatch(updateData({
                     firstName: edit.firstName,
                     lastName: edit.lastName,
                 }))
             })
+            .catch((e) => console.log(e))
     }
 
     /**
@@ -93,13 +96,23 @@ const Profile = () => {
                 <form className='userForm'>
                     <div className="inputWrapper">
                         <label htmlFor="firstName"></label>
-                        <input type="text" id="firstName" name='firstName' value={edit.firstName} placeholder={user.body.firstName} onChange={onChange} required />
+                        <input type="text"
+                            id="firstName"
+                            name="firstName"
+                            style={{ color: isEditing ? "#ccc" : "#5256ec" }}
+                            defaultValue={profileData.firstName}
+                            onChange={onChange} required />
                         <label htmlFor="lastName"></label>
-                        <input type="text" id="lastName" name="lastName" value={edit.lastName} placeholder={edit.lastName} onChange={onChange} required />
+                        <input type="text"
+                            id="lastName"
+                            name="lastName"
+                            style={{ color: isEditing ? "#ccc" : "#5256ec" }}
+                            defaultValue={profileData.lastName}
+                            onChange={onChange} required />
                     </div>
 
                     <div className="userButtons">
-                        <button className="btn" onClick={handleEdit} type="submit" >Save</button>
+                        <button className="btn" onClick={handleEdit} type="button" >Save</button>
                         <button className="btn" onClick={userDelete} type="submit" >Cancel</button>
                     </div>
                 </form>

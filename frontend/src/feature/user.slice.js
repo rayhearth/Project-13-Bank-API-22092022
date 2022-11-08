@@ -5,10 +5,10 @@ export const usersSlice = createSlice({
   name: "auth",
   initialState: {
     isAuthentificated: false,
-    email: null,
-    firstName: null,
-    lastName: null,
-    token: null,
+    email: '',
+    firstName: '',
+    lastName: '',
+    token: '',
   },
   reducers: {
     isConnected: (state, { payload }) => {
