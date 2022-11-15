@@ -46,6 +46,11 @@
 @media (max-width: 768px) {
   .hero {
     justify-content: center;
+    .hero-content {
+      .text-content {
+        width: 100%;
+      }
+    }
     .subtitle {
       font-size: 1rem;
     }

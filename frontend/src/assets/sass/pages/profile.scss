@@ -22,3 +22,12 @@
         }
     }
 }
+
+@media (max-width: 768px) {
+    .profile {
+        padding: 20px;
+        .inputWrapper {
+            flex-direction: column;
+        }
+    }
+}

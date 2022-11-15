@@ -38,3 +38,9 @@ header {
         }
     }
 }
+
+@media (max-width: 425px) {
+    .main-nav {
+        flex-direction: column;
+    }
+}

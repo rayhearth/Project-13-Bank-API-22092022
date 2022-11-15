@@ -15,7 +15,6 @@ const Login = () => {
     })
 
     const onChange = (e) => {
-        console.log(e);
         setCredentials({
             ...credentials,
             [e.target.name]: e.target.value
@@ -29,7 +28,6 @@ const Login = () => {
                 accountServices.saveToken(res.body.token)
                 navigate('/user')
             })
-            .then()
             .catch(error => console.log(error))
     }
 

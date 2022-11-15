@@ -15,3 +15,10 @@
         font-weight: bold;
     }
 }
+
+@media (max-width: 425px) {
+    .account {
+        display: flex;
+        flex-direction: column;
+    }
+}
